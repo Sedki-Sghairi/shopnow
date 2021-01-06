@@ -1,12 +1,32 @@
 import * as React from 'react';
-import { StyleSheet, FlatList } from 'react-native';
+import { StyleSheet, FlatList, Platform } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductItem from '../../components/shop/ProductItem';
 import * as cartActions from '../../store/actions/cartAction';
+import CustomHeaderButton from '../../components/ui/HeaderButton';
+
 const ProductOverviewScreen = ({ navigation }) => {
 	const products = useSelector((state) => state.products.availableProducts);
 	const dispatch = useDispatch();
-
+	React.useLayoutEffect(
+		() => {
+			navigation.setOptions({
+				headerRight: () => (
+					<HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+						<Item
+							title="Cart"
+							iconName={Platform.OS === 'android' ? 'cart-outline' : 'ios-cart'}
+							onPress={() => {
+								console.log('mrigel');
+							}}
+						/>
+					</HeaderButtons>
+				)
+			});
+		},
+		[ navigation ]
+	);
 	return (
 		<FlatList
 			data={products}
@@ -29,9 +49,14 @@ const ProductOverviewScreen = ({ navigation }) => {
 	);
 };
 
-ProductOverviewScreen.navigationOptions = {
-	headerTitle: 'All Products'
-};
+// ProductOverviewScreen.navigationOptions = (data) => {
+// 	return {
+// 		headerTitle: 'All Products',
+// 		headerRight: (
+
+// 		)
+// 	};
+// };
 
 export default ProductOverviewScreen;
 

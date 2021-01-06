@@ -35,7 +35,11 @@ export default function App() {
 						}
 					}}
 				>
-					<Stack.Screen name="ProductsOverview" component={ProductOverviewScreen} />
+					<Stack.Screen
+						name="ProductsOverview"
+						component={ProductOverviewScreen}
+						options={{ headerTitle: 'Products' }}
+					/>
 					<Stack.Screen
 						name="ProductDetail"
 						component={ProductDetailScreen}

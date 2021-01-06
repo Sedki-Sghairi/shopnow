@@ -1,0 +1,19 @@
+import React from 'react';
+import { Platform } from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
+import Colors from '../../constants/Colors';
+import { HeaderButton } from 'react-navigation-header-buttons';
+
+const CustomHeaderButton = (props) => {
+	return (
+		<HeaderButton
+			{...props}
+			iconSize={23}
+			color={Platform.OS === 'android' ? 'white' : Colors.primary}
+			IconComponent={Ionicons}
+		/>
+	);
+};
+
+export default CustomHeaderButton;
