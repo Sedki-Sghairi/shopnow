@@ -8,6 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ProductOverviewScreen from './screens/shop/ProductOverviewScreen';
 import { Platform } from 'react-native';
 import Colors from './constants/Colors';
+import ProductDetailScreen from './screens/shop/ProductDetailScreen';
+import CartScreen from './screens/shop/CartScreen';
 
 const rootReducer = combineReducers({
 	products: ProductReducer
@@ -19,7 +21,7 @@ export default function App() {
 	return (
 		<Provider store={store}>
 			<NavigationContainer>
-				<Stack.Navigator>
+				<Stack.Navigator initialRouteName="ProductsOverview">
 					<Stack.Screen
 						name="ProductsOverview"
 						component={ProductOverviewScreen}
@@ -34,6 +36,8 @@ export default function App() {
 							}
 						}}
 					/>
+					<Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
+					<Stack.Screen name="cart" component={CartScreen} />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</Provider>
