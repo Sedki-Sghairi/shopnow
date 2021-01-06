@@ -1,17 +1,19 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, Pressable } from 'react-native';
 
 const ProductItem = (props) => {
 	return (
-		<View style={styles.product}>
-			<Image style={{ width: '100%', height: '60%' }} source={{ uri: props.image }} />
-			<Text style={styles.title}>{props.title}</Text>
-			<Text style={styles.price}>${props.price.toFixed(2)}</Text>
-			<View style={styles.container}>
-				<Button color="#757575" title="View Details" onPress={props.onViewDetail} />
-				<Button color="#546e7a" title="Add to Cart" onPress={props.onAddToCart} />
+		<Pressable onPress={props.onViewDetail}>
+			<View style={styles.product}>
+				<Image style={{ width: '100%', height: '60%' }} source={{ uri: props.image }} />
+				<Text style={styles.title}>{props.title}</Text>
+				<Text style={styles.price}>${props.price.toFixed(2)}</Text>
+				<View style={styles.container}>
+					<Button color="#757575" title="View Details" onPress={props.onViewDetail} />
+					<Button color="#546e7a" title="Add to Cart" onPress={props.onAddToCart} />
+				</View>
 			</View>
-		</View>
+		</Pressable>
 	);
 };
 
