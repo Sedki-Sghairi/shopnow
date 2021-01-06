@@ -10,9 +10,11 @@ import { Platform } from 'react-native';
 import Colors from './constants/Colors';
 import ProductDetailScreen from './screens/shop/ProductDetailScreen';
 import CartScreen from './screens/shop/CartScreen';
+import cartReducer from './store/reducers/cartReducer';
 
 const rootReducer = combineReducers({
-	products: ProductReducer
+	products: ProductReducer,
+	cart: cartReducer
 });
 const store = createStore(rootReducer);
 const Stack = createStackNavigator();
