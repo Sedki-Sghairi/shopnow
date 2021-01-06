@@ -18,7 +18,7 @@ const ProductOverviewScreen = ({ navigation }) => {
 							title="Cart"
 							iconName={Platform.OS === 'android' ? 'cart-outline' : 'ios-cart'}
 							onPress={() => {
-								console.log('mrigel');
+								navigation.navigate('cart');
 							}}
 						/>
 					</HeaderButtons>
@@ -48,15 +48,6 @@ const ProductOverviewScreen = ({ navigation }) => {
 		/>
 	);
 };
-
-// ProductOverviewScreen.navigationOptions = (data) => {
-// 	return {
-// 		headerTitle: 'All Products',
-// 		headerRight: (
-
-// 		)
-// 	};
-// };
 
 export default ProductOverviewScreen;
 
