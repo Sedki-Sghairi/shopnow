@@ -6,7 +6,8 @@ import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
 import ProductOverviewScreen from './screens/shop/ProductOverviewScreen';
-
+import { Platform } from 'react-native';
+import Colors from './constants/Colors';
 const rootReducer = combineReducers({
 	products: ProductReducer
 });
@@ -17,7 +18,20 @@ export default function App() {
 		<Provider store={store}>
 			<NavigationContainer>
 				<Stack.Navigator>
-					<Stack.Screen name="ProductsOverview" component={ProductOverviewScreen} />
+					<Stack.Screen
+						name="ProductsOverview"
+						component={ProductOverviewScreen}
+						options={{
+							title: 'Products',
+							headerStyle: {
+								backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
+							},
+							headerTintColor: Platform.OS === 'android' ? '#fff' : Colors.primary,
+							headerTitleStyle: {
+								fontWeight: 'bold'
+							}
+						}}
+					/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</Provider>
