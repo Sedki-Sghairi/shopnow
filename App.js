@@ -8,11 +8,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ProductOverviewScreen from './screens/shop/ProductOverviewScreen';
 import { Platform } from 'react-native';
 import Colors from './constants/Colors';
+
 const rootReducer = combineReducers({
 	products: ProductReducer
 });
 const store = createStore(rootReducer);
 const Stack = createStackNavigator();
+
 export default function App() {
 	return (
 		<Provider store={store}>
