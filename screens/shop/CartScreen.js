@@ -4,7 +4,7 @@ import Colors from '../../constants/Colors';
 import { useSelector, useDispatch } from 'react-redux';
 import CartItem from '../../components/shop/CartItem';
 import { removeFromCart } from '../../store/actions/cartAction';
-
+import * as orderActions from '../../store/actions/orderAction';
 const CartScreen = (props) => {
 	const items = useSelector((state) => {
 		const myItems = [];
@@ -27,7 +27,12 @@ const CartScreen = (props) => {
 				<Text style={styles.summaryText}>
 					Total: <Text style={styles.amount}>${total.toFixed(2)}</Text>
 				</Text>
-				<Button color="#388e3c" title="Place Order" disabled={items.length === 0 ? true : false} />
+				<Button
+					color="#388e3c"
+					title="Place Order"
+					disabled={items.length === 0 ? true : false}
+					onPress={() => dispatch(orderActions.addOrder(myItems, total))}
+				/>
 			</View>
 			<FlatList
 				data={items}

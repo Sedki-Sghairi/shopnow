@@ -11,10 +11,12 @@ import Colors from './constants/Colors';
 import ProductDetailScreen from './screens/shop/ProductDetailScreen';
 import CartScreen from './screens/shop/CartScreen';
 import cartReducer from './store/reducers/cartReducer';
+import orderReducer from './store/reducers/orderReducer';
 
 const rootReducer = combineReducers({
 	products: ProductReducer,
-	cart: cartReducer
+	cart: cartReducer,
+	orders: orderReducer
 });
 const store = createStore(rootReducer);
 const Stack = createStackNavigator();
