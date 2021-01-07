@@ -12,6 +12,7 @@ import ProductDetailScreen from './screens/shop/ProductDetailScreen';
 import CartScreen from './screens/shop/CartScreen';
 import cartReducer from './store/reducers/cartReducer';
 import orderReducer from './store/reducers/orderReducer';
+import OrdersScreen from './screens/shop/OrdersScreen';
 
 const rootReducer = combineReducers({
 	products: ProductReducer,
@@ -48,6 +49,7 @@ export default function App() {
 						options={({ route }) => ({ title: route.params.title })}
 					/>
 					<Stack.Screen name="cart" component={CartScreen} />
+					<Stack.Screen name="order" component={OrdersScreen} />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</Provider>

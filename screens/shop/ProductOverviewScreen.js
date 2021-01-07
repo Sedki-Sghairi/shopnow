@@ -22,6 +22,17 @@ const ProductOverviewScreen = ({ navigation }) => {
 							}}
 						/>
 					</HeaderButtons>
+				),
+				headerLeft: () => (
+					<HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+						<Item
+							title="Menu"
+							iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+							onPress={() => {
+								navigation.toggleDrawer();
+							}}
+						/>
+					</HeaderButtons>
 				)
 			});
 		},

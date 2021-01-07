@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 import Colors from '../../constants/Colors';
 import { useSelector, useDispatch } from 'react-redux';
 import CartItem from '../../components/shop/CartItem';
 import { removeFromCart } from '../../store/actions/cartAction';
 import * as orderActions from '../../store/actions/orderAction';
-const CartScreen = (props) => {
+const CartScreen = ({ navigation }) => {
+	const [ renderOrders, setRenderOrders ] = useState(false);
 	const items = useSelector((state) => {
 		const myItems = [];
 		for (const key in state.cart.items) {
@@ -21,6 +22,14 @@ const CartScreen = (props) => {
 	});
 	const total = useSelector((state) => state.cart.totalAmount);
 	const dispatch = useDispatch();
+	useEffect(
+		() => {
+			if (renderOrders === false) {
+				dispatch(orderActions.addOrder(items, total));
+			}
+		},
+		[ renderOrders ]
+	);
 	return (
 		<View style={styles.screen}>
 			<View style={styles.summary}>
@@ -31,7 +40,10 @@ const CartScreen = (props) => {
 					color="#388e3c"
 					title="Place Order"
 					disabled={items.length === 0 ? true : false}
-					onPress={() => dispatch(orderActions.addOrder(myItems, total))}
+					onPress={() => {
+						setRenderOrders(true);
+						navigation.navigate('order');
+					}}
 				/>
 			</View>
 			<FlatList

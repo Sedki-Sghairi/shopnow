@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		marginHorizontal: 20,
-		alignItems: 'center'
+		alignItems: 'center',
+		flexWrap: 'wrap'
 	},
 	itemData: {
 		flexDirection: 'row',
