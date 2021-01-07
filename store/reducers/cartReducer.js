@@ -1,6 +1,5 @@
-// import {  } from "../../data/dummy-data";
 import CartItem from '../../models/cart-item';
-import { ADD_TO_CART } from '../actions/cartAction';
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cartAction';
 const initialState = {
 	items: {},
 	totalAmount: 0
@@ -38,6 +37,28 @@ export default (state = initialState, { type, payload }) => {
 					totalAmount: state.totalAmount + price
 				};
 			}
+		case REMOVE_FROM_CART:
+			const selectedCartItem = state.items[payload];
+			const currentQty = selectedCartItem.quantity;
+			let updatedCartItems;
+			if (currentQty > 1) {
+				// need to reduce it, not erase it
+				const updatedCartItem = new CartItem(
+					selectedCartItem.quantity - 1,
+					selectedCartItem.productPrice,
+					selectedCartItem.productTitle,
+					selectedCartItem.sum - selectedCartItem.productPrice
+				);
+				updatedCartItems = { ...state.items, [payload]: updatedCartItem };
+			} else {
+				updatedCartItems = { ...state.items };
+				delete updatedCartItems[payload];
+			}
+			return {
+				...state,
+				items: updatedCartItems,
+				totalAmount: state.totalAmount - selectedCartItem.productPrice
+			};
 
 		default:
 			return state;
